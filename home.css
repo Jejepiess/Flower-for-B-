@@ -1,3 +1,54 @@
+/* Existing CSS */
+
+/* Add heart and green circle animations */
+@keyframes bloomFade {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+
+.blooming-element {
+    position: absolute;
+    animation: bloomFade 3s infinite ease-in-out;
+    opacity: 0;
+}
+
+/* Creating multiple random hearts and green circles */
+.blooming-heart::before,
+.blooming-circle::before {
+    content: '\2665'; /* Heart symbol */
+    font-size: 20px;
+    color: red;
+    position: absolute;
+}
+
+.blooming-circle::before {
+    content: ''; /* Empty for circle */
+    width: 15px;
+    height: 15px;
+    background: limegreen;
+    border-radius: 50%;
+}
+
+/* Random positioning using nth-child selectors */
+.blooming-heart:nth-child(odd) { left: 20%; top: 30%; animation-delay: 1s; }
+.blooming-heart:nth-child(even) { left: 70%; top: 50%; animation-delay: 2s; }
+.blooming-circle:nth-child(odd) { left: 40%; top: 20%; animation-delay: 1.5s; }
+.blooming-circle:nth-child(even) { left: 80%; top: 60%; animation-delay: 2.5s; }
+
+/* Adding the elements dynamically */
+body::after {
+    content: '';
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Append the elements dynamically using JavaScript */
+
+
 *,
 *::after,
 *::before {
